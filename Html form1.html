@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day Surprise</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+  }
+  .dialogue-box {
+    width: 300px;
+    background-color: #fff;
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 100px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    color: #e74c3c;
+    font-size: 24px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  button:hover {
+    background-color: #c0392b;
+  }
+  .yes-button {
+    background-color: #2ecc71;
+  }
+  .heart-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .heart {
+    position: absolute;
+    animation: pop 6s ease forwards, fade-up 4s 6s forwards;
+    color: red;
+    opacity: 0;
+  }
+  @keyframes pop {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100px) scale(2); opacity: 0; }
+  }
+  @keyframes fade-up {
+    0% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-100px); }
+  }
+</style>
+</head>
+<body>
+  <div class="dialogue-box">
+    <h1>Will you be my Valentine?</h1>
+    <h2>(don't press the no button)</h2>
+    <div class="button-container">
+      <button onclick="showHeartsAndMessage()" class="yes-button" id="yesButton">Yes</button>
+      <button onclick="resizeButton()">No</button>
+    </div>
+  </div>
+  <script>
+    function showHeartsAndMessage() {
+      const heartContainer = document.createElement('div');
+      heartContainer.classList.add('heart-container');
+      document.body.appendChild(heartContainer);
+
+      for (let i = 0; i < 10; i++) { // Adjust the number of hearts as needed
+        const heart = document.createElement('span');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.fontSize = `${Math.random() * 60 + 40}px`; // Random size
+        heart.style.animationDelay = `${Math.random()}s`;
+        heartContainer.appendChild(heart);
+      }
+
+      setTimeout(() => {
+        heartContainer.remove();
+      }, 7000);
+
+      const message = document.createElement('p');
+      message.textContent = "I love you my Bhoomi, I wanna be your Valentine too 😘😘";
+      document.body.appendChild(message);
+    }
+
+    let fontSizeIncrement = 0;
+    function resizeButton() {
+      const yesButton = document.getElementById('yesButton');
+      fontSizeIncrement += 5;
+      yesButton.style.fontSize = `${20 + fontSizeIncrement}px`;
+      yesButton.style.padding = `${15 + fontSizeIncrement / 5}px ${30 + fontSizeIncrement / 5}px`;
+    }
+  </script>
+</body>
+</html>
+
